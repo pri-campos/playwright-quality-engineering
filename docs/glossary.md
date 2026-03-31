@@ -12,7 +12,7 @@
 - When applicable, include:
   - Context
   - Example
-  - Related terms
+  - Also known as
 
 ---
 
@@ -24,6 +24,41 @@
 | [H](#-h) | [I](#-i) | [J](#-j) | [K](#-k) | [L](#-l) | [M](#-m) | [N](#-n) |
 | [O](#-o) | [P](#-p) | [Q](#-q) | [R](#-r) | [S](#-s) | [T](#-t) | [U](#-u) |
 | [V](#-v) | [W](#-w) | [X](#-x) | [Y](#-y) | [Z](#-z) |   |   |
+
+---
+
+## 🔤 B
+
+### Browser Engines
+
+**Definition:**  
+Core component of a browser that executes web applications by parsing HTML/CSS, managing the DOM, and coordinating JavaScript execution and rendering.
+
+- https://webkit.org/ 
+- https://www.chromium.org/blink/
+
+Common classifications:
+
+ - Rendering engines: layout and rendering (Blink, WebKit, Gecko)
+ - JavaScript engines: script execution (V8, JavaScriptCore, SpiderMonkey)
+ - Headless: execution without a graphical interface
+ - Automation protocols: control interfaces used by testing tools
+
+**Context:**  
+Technical foundation of web browsers and integration point for E2E automation via protocols exposed by the engines.
+
+**Example:**  
+ - Blink (Chromium-based: Chrome, Edge)
+ - WebKit (Safari)
+ - Gecko (Firefox)
+
+Playwright (protocol usage):
+- Chromium → Chrome DevTools Protocol (CDP)  
+- WebKit → WebKit remote debugging protocol (via Playwright transport layer)  
+- Firefox → Firefox remote debugging protocol (adapted by Playwright, not CDP)
+
+**Also known as:**  
+Rendering Engine • Layout Engine
 
 ---
 
@@ -53,8 +88,8 @@ Used to accelerate development, standardize structures, and reduce manual effort
  - E2E testing: Playwright codegen, Cypress Studio
  - Structure: scaffolding and boilerplates
 
-**Related:**  
-Code generation • Program synthesis • Scaffolding • Test recording
+**Also known as:**  
+Automatic code generation • Source Code Generation
 
 ---
 
