@@ -1,22 +1,24 @@
 # 📖 Glossary
 
-> Centralized definitions of key terms used in this project.  
-> This glossary standardizes terminology to reduce ambiguity, support onboarding, and ensure consistent understanding across technical and domain contexts.
+> Definições centralizadas dos principais termos utilizados neste projeto.
+> Este glossário reúne e contextualiza conceitos relevantes para reduzir ambiguidades e promover entendimento consistente entre diferentes contextos técnicos e de domínio.
 
 ---
 
-## 📌 How to Use This Glossary
+## 📌 Como usar este glossário
 
-- Terms are organized alphabetically  
-- Definitions are concise and functional  
-- When applicable, include:
-  - Context
-  - Example
-  - Also known as
+- Os termos estão organizados em ordem alfabética 
+- As definições são concisas e funcionais
+- Quando aplicável, incluem:
+  - Definição
+  - Link de referência
+  - Contexto
+  - Exemplo
+  - Termos equivalentes
 
 ---
 
-## 🔎 Index
+## 🔎 Índice
 
 |   |   |   |   |   |   |   |
 |---|---|---|---|---|---|---|
@@ -29,70 +31,164 @@
 
 ## 🔤 B
 
-### Browser Engines
+### Browser Engine (Motor de Navegador)
 
-**Definition:**  
-Core component of a browser that executes web applications by parsing HTML/CSS, managing the DOM, and coordinating JavaScript execution and rendering.
+**Definição:**  
+Componente central de um navegador responsável por executar aplicações web, interpretando HTML/CSS, gerenciando o DOM e coordenando a execução de JavaScript e a renderização.
 
 - https://webkit.org/ 
 - https://www.chromium.org/blink/
 
-Common classifications:
+Arquitetura de Execução:
+ - Motores de renderização (Rendering Engine): layout e renderização (Blink, WebKit, Gecko).
+ - Motores de JavaScript (JavaScript Engine): execução de scripts (V8, JavaScriptCore, SpiderMonkey).
 
- - Rendering engines: layout and rendering (Blink, WebKit, Gecko)
- - JavaScript engines: script execution (V8, JavaScriptCore, SpiderMonkey)
- - Headless: execution without a graphical interface
- - Automation protocols: control interfaces used by testing tools
+Modos de Operação e Controle:
+ - Headless Mode: execução sem interface gráfica.
+ - Automação via Protocolos: Mecanismos de inspeção e controle (Ex: CDP para Chromium) que permitem que ferramentas externas (Playwright, Puppeteer) manipulem o estado do navegador e do DOM.
 
-**Context:**  
-Technical foundation of web browsers and integration point for E2E automation via protocols exposed by the engines.
+**Contexto:**  
+Base técnica dos navegadores web e ponto de integração para automação E2E por meio dos protocolos expostos pelos motores.
 
-**Example:**  
+**Exemplos:**  
  - Blink (Chromium-based: Chrome, Edge)
  - WebKit (Safari)
  - Gecko (Firefox)
 
-Playwright (protocol usage):
+Playwright (uso de protocolos):
 - Chromium → Chrome DevTools Protocol (CDP)  
-- WebKit → WebKit remote debugging protocol (via Playwright transport layer)  
-- Firefox → Firefox remote debugging protocol (adapted by Playwright, not CDP)
-
-**Also known as:**  
-Rendering Engine • Layout Engine
+- WebKit → protocolo de depuração remota do WebKit (via camada de transporte do Playwright)
+- Firefox → protocolo de depuração remota do Firefox (adaptado pelo Playwright)
 
 ---
 
 ## 🔤 C
 
-### Codegen
+### Codegen (Geração de Código)
 
-**Definition:**  
-Process of automatically generating code or artifacts, fully or partially, from a structured input (templates, models, contracts, or interactions).
+**Definição:**  
+Processo de gerar código ou artefatos automaticamente, de forma total ou parcial, a partir de uma entrada estruturada (templates, modelos, contratos ou interações).
 
 - https://zencoder.ai/glossary/code-generation  
 - https://tomassetti.me/code-generation/
 
-Common classifications:
+Classificações comuns:
 
-- Template-based: generation from fixed, parameterized templates
-- Model-driven (MDD): generation from domain models as the primary source
-- AI-based: generation based on machine learning models
-- Recording-based: generation from captured interactions (e.g., Playwright)
+- Baseada em Templates (Template-based): Geração a partir de modelos fixos e parametrizados.
+- Orientada a Modelos (MDD - Model-Driven Development): Geração tendo modelos de domínio como fonte primária de verdade.
+- Baseada em IA (AI-based): Geração fundamentada em modelos de aprendizado de máquina (LLMs).
+- Baseada em Gravação (Recording-based): Geração a partir da captura de interações (ex: Playwright, Selenium IDE).
 
-**Context:**  
+**Contexto:**  
 Used to accelerate development, standardize structures, and reduce manual effort in repetitive tasks. In end-to-end testing, it is often applied to generate initial scripts from real user interactions.
 
-**Example:**  
- - API: Swagger Codegen, GraphQL Code Generator
- - AI-assisted: ChatGPT, GitHub Copilot
- - E2E testing: Playwright codegen, Cypress Studio
- - Structure: scaffolding and boilerplates
+**Exemplos:**  
+ - API: Swagger Codegen, GraphQL Code Generator.
+ - Assistência por IA: ChatGPT, GitHub Copilot.
+ - Testes E2E: playwright codegen, Cypress Studio.
+ - Estrutura: Scaffolding e Boilerplates.
 
-**Also known as:**  
+**Termos equivalentes:**  
 Automatic code generation • Source Code Generation
 
 ---
 
+## 🔤 P
+
+### Page Object Model (POM)
+
+**Definição:** 
+É um padrão de projeto usado em automação de testes onde cada página (ou tela) do sistema é representada por uma classe. Essa classe encapsula elementos da interface e ações possíveis nela. Atua como um repositório único para os serviços e operação que a página oferece, em vez serviços espalhados pelo teste. 
+
+ - https://www.selenium.dev/documentation/test_practices/encouraged/page_object_models/
+ - https://martinfowler.com/bliki/PageObject.html
+ - https://playwright.dev/docs/pom
+
+Principais impactos:
+ - Reduzir duplicação de código
+ - Tornar testes mais legivéis
+ - Separar lógica de teste (assert) da lógica de interação com UI (ações)
+
+Limitação:
+ - Reuso baixo quando há muitos componentes compartilhados. 
+
+Evoluções do POM:
+ - Screenplay Pattern
+ - Page Component Object Model
+
+**Contexto:** 
+De acordo com o programa de Engenharia de Automação de Testes do ISTQB (2016), uma boa prática é separar o software usado para testes do sistema em teste para minimizar interferências. Ou seja, uma estrutura de automação de teste deve ser projetada e gerenciada como um produto de software independente, com seu próprio ciclo de vida, priorizando a facilidade de manutenção e aprendizado. E a depender do contexto, seu uso pode ser overengineering. 
+
+**Exemplos:**  
+ - Normalmente um página é modelada pelas partes:
+     - LoginPage
+        - Localizadores, para definir componentes da página.
+        - Métodos que interagem com esses localizadores.
+
+### Page Component Object Model
+
+**Definição:** 
+Representar componentes da UI como objetos independentes, não páginas. Focando também em reutilização e modularidade a nível de componente.
+
+- https://martinfowler.com/articles/micro-frontends.html
+- https://playwright.dev/docs/best-practices
+- https://gorillalogic.com/test-automation-frameworks-page-object-model-vs-page-component-object-model/
+
+Limitação:
+ - Ainda depende da UI
+ - Pode ficar fragmentado demais sem disciplina
+
+**Contexto:** 
+Devido arquiteturas modernas como micro front-ends, onde há reutilização de partes da UI (botões, tabelas, modais), testes de componentes isolados ou multiplos times mexendo em pedaços diferentes da DOM, o uso puro de POM  começa a quebrar.
+
+**Exemplos:**  
+ - LoginPage vira:
+     - LoginForm
+     - Button
+     - InputField
+
+---
+
+## 🔤 S
+
+### Screenplay Pattern
+
+**Definição:** 
+Padrão onde o teste é modelado como comportamento de atores, e esse padrão orquestra os outros pardrões.
+
+Principais impactos:
+ - reduzir acoplamento com UI
+ - aumenta reuso de lógica
+ - escala melhor em sistemas complexos
+ - cria testes que parecem linguagem de negócio
+
+Estutura:
+ - Actor: quem executa
+ - Task: objetivo maior
+ - Interaction: ação técnica
+ - Question: validação
+
+**Contexto:** 
+Embora tenha nascido da comunidade  Serenity BDD
+
+**Exemplos:**
+João (Actor)
+→ faz login (Task)
+   → digita usuário (Interaction)
+   → digita senha (Interaction)
+   → clica botão (Interaction)
+→ verifica dashboard (Question)
+
+### Storage State
+
+---
+
+## 🔤 T
+
+### Testing Library Pattern
+
+
+---
 ## 📚 References
 
 - [Technical Writing](https://developers.google.com/tech-writing/one/words)
